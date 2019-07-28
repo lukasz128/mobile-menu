@@ -1,0 +1,121 @@
+*{
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background: #f3f3f3;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+  #mobile {
+    display: none;
+  }
+  .mobile-menu-trigger-box {
+    float: right;
+  }
+  .mobile-menu-trigger {
+    display: flex;
+    flex-direction: column;
+    width: 30px;
+    cursor: pointer;  
+    z-index: 999;
+    margin: 1rem;
+    transform: rotate(180deg);
+  }
+  .mobile-menu-trigger  span {
+    border: solid #333;
+    border-width: 4px  0 0 0;
+    padding: .1rem;
+    transition:  transform 500ms, opacity 500ms, width 500ms;
+    z-index: inherit;
+    width: 30px;
+  }
+  #mobile:checked + .mobile-menu-container .mobile-menu-trigger-box .mobile-menu-trigger span:first-child  {
+    transform: rotate(45deg) translate(8px, 11px);
+  }
+  #mobile:checked + .mobile-menu-container .mobile-menu-trigger-box .mobile-menu-trigger span:nth-child(3) {
+    transform: rotate(-45deg);
+  }
+  #mobile:checked + .mobile-menu-container .mobile-menu-trigger-box .mobile-menu-trigger span:nth-child(2) {
+    opacity: 0;
+  }
+  #mobile:checked + .mobile-menu-container .mobile-menu-trigger-box .mobile-menu-trigger span {
+    border-color: #f3f3f3;
+  }
+  #mobile:checked + .mobile-menu-container .mobile-menu-trigger-box .mobile-menu-trigger {
+    padding: .5rem 0;
+  }
+  #mobile:not(:checked) +  .mobile-menu-container .mobile-menu-trigger-box .mobile-menu-trigger:hover span:first-child{
+    width: 15px;
+  }
+  #mobile:not(:checked) + .mobile-menu-container .mobile-menu-trigger-box .mobile-menu-trigger:hover span:nth-child(2) {
+    width: 20px;
+  }
+  #mobile:not(:checked) + .mobile-menu-container .mobile-menu-trigger-box .mobile-menu-trigger:hover span:last-child {
+    width: 25px;
+  }
+  #mobile:checked + .mobile-menu-container  .mobile-list-box {
+    opacity: 1;
+    pointer-events: all;
+    animation: fadeIn 1000ms;
+  }
+  #mobile:not(:checked) + .mobile-menu-container  .mobile-list-box {
+    opacity: 0;
+    pointer-events: none;
+    animation: none;
+  }
+  .mobile-list-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #333;
+  }
+  .mobile-list-box .mobile-list {
+    text-align: center;
+    margin: 5rem 0;
+    list-style: none;
+    padding-left: 0;
+  }
+  .mobile-list-box .mobile-list .item {
+    background: #FFF;
+    margin: 1rem 2rem;
+    display: block;
+
+  }
+  .mobile-list-box .mobile-list .item .link {
+    text-decoration: none;
+    display: block;
+    font-size: 1.1rem;
+    position: relative;
+  }
+  .mobile-list-box .mobile-list .item .link .text {
+    display: block;
+    padding: 1rem 0;
+    color: #000;
+    transition: transform 300ms;
+  }
+  .mobile-list-box .mobile-list .item .link:before {
+    content: attr(data-hover);
+    position: absolute;
+    top: 0;
+    left:0;
+    padding: 1rem 0;
+    width: 100%;
+    background: #333;
+    color: #f3f3f3;
+    transition: transform 300ms;
+    transform: translateX(-100%);
+  }
+  .mobile-list-box .mobile-list .item .link:hover::before,
+  .mobile-list-box .mobile-list .item .link:focus::before {
+    transform: translateX(0);
+  }
+  .mobile-list-box .mobile-list .item .link:hover .text,
+  .mobile-list-box .mobile-list .item .link:focus .text {
+    transform: translateX(100%);
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
